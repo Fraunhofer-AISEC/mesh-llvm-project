@@ -652,6 +652,8 @@ collectSanitizerRuntimes(const ToolChain &TC, const ArgList &Args,
     }
     if (SanArgs.needsHwasanRt() && SanArgs.linkRuntimes())
       SharedRuntimes.push_back("hwasan");
+    if (SanArgs.needsMESHRt() && SanArgs.linkRuntimes())
+      SharedRuntimes.push_back("mesh");
   }
 
   // The stats_client library is also statically linked into DSOs.
@@ -666,6 +668,10 @@ collectSanitizerRuntimes(const ToolChain &TC, const ArgList &Args,
 
   // Each static runtime that has a DSO counterpart above is excluded below,
   // but runtimes that exist only as static are not affected by needsSharedRt.
+
+  if (SanArgs.needsMESHRt()) {
+    StaticRuntimes.push_back("MESH");
+  }
 
   if (!SanArgs.needsSharedRt() && SanArgs.needsAsanRt() && SanArgs.linkRuntimes()) {
     StaticRuntimes.push_back("asan");

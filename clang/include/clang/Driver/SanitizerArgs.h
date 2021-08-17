@@ -46,6 +46,7 @@ class SanitizerArgs {
   std::string HwasanAbi;
   bool LinkRuntimes = true;
   bool LinkCXXRuntimes = false;
+  bool MESHRuntime = false;
   bool NeedPIE = false;
   bool SafeStackRuntime = false;
   bool Stats = false;
@@ -76,6 +77,7 @@ class SanitizerArgs {
   }
   bool needsUbsanRt() const;
   bool requiresMinimalRuntime() const { return MinimalRuntime; }
+  bool needsMESHRt() const { return MESHRuntime; }
   bool needsDfsanRt() const { return Sanitizers.has(SanitizerKind::DataFlow); }
   bool needsSafeStackRt() const { return SafeStackRuntime; }
   bool needsCfiRt() const;

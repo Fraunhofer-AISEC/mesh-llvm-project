@@ -18,6 +18,8 @@ class TypeAttr<string S> : Attr<S>;
 
 /// Target-independent enum attributes.
 
+def MESH : EnumAttr<"mesh">;
+
 /// Alignment of parameter (5 bits) stored as log2 of alignment with +1 bias.
 /// 0 means unaligned (different from align(1)).
 def Alignment : IntAttr<"align">;

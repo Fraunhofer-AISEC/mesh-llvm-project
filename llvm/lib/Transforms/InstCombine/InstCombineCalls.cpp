@@ -4196,7 +4196,8 @@ Instruction *InstCombiner::visitCallInst(CallInst &CI) {
   case Intrinsic::lifetime_end:
     // Asan needs to poison memory to detect invalid access which is possible
     // even for empty lifetime range.
-    if (II->getFunction()->hasFnAttribute(Attribute::SanitizeAddress) ||
+    if (II->getFunction()->hasFnAttribute(Attribute::MESH) ||
+        II->getFunction()->hasFnAttribute(Attribute::SanitizeAddress) ||
         II->getFunction()->hasFnAttribute(Attribute::SanitizeMemory) ||
         II->getFunction()->hasFnAttribute(Attribute::SanitizeHWAddress))
       break;

@@ -1246,6 +1246,8 @@ void DarwinClang::AddLinkRuntimeLibArgs(const ArgList &Args,
   }
 
   const SanitizerArgs &Sanitize = getSanitizerArgs();
+  if (Sanitize.needsMESHRt())
+    AddLinkSanitizerLibArgs(Args, CmdArgs, "mesh");
   if (Sanitize.needsAsanRt())
     AddLinkSanitizerLibArgs(Args, CmdArgs, "asan");
   if (Sanitize.needsLsanRt())
@@ -2687,8 +2689,10 @@ SanitizerMask Darwin::getSupportedSanitizers() const {
     Res |= SanitizerKind::Vptr;
 
   if (isTargetMacOS()) {
-    if (IsX86_64)
+    if (IsX86_64){
       Res |= SanitizerKind::Thread;
+      Res |= SanitizerKind::MESH;
+    }
   } else if (isTargetIOSSimulator() || isTargetTvOSSimulator()) {
     if (IsX86_64)
       Res |= SanitizerKind::Thread;

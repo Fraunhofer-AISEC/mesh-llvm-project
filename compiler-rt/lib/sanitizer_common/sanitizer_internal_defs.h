@@ -419,6 +419,9 @@ inline void Trap() {
 
 }  // namespace __sanitizer
 
+namespace __mesh { 
+using namespace __sanitizer; 
+}
 namespace __asan {
 using namespace __sanitizer;
 }

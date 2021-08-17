@@ -1288,6 +1288,7 @@ static uint64_t getRawAttributeMask(Attribute::AttrKind Val) {
     return 1ULL << 62;
   case Attribute::NoFree:
     return 1ULL << 63;
+  case Attribute::MESH: return 1ULL << 64; // known issue: overflows
   default:
     // Other attributes are not supported in the raw format,
     // as we ran out of space.
@@ -1398,6 +1399,8 @@ static Attribute::AttrKind getAttrFromCode(uint64_t Code) {
   switch (Code) {
   default:
     return Attribute::None;
+  case bitc::ATTR_KIND_MESH:
+    return Attribute::MESH;
   case bitc::ATTR_KIND_ALIGNMENT:
     return Attribute::Alignment;
   case bitc::ATTR_KIND_ALWAYS_INLINE:

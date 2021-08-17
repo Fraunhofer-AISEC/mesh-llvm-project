@@ -1284,6 +1284,7 @@ bool LLParser::ParseFnAttributeValuePairs(AttrBuilder &B,
       B.addAllocSizeAttr(ElemSizeArg, NumElemsArg);
       continue;
     }
+    case lltok::kw_mesh: B.addAttribute(Attribute::MESH); break;
     case lltok::kw_alwaysinline: B.addAttribute(Attribute::AlwaysInline); break;
     case lltok::kw_argmemonly: B.addAttribute(Attribute::ArgMemOnly); break;
     case lltok::kw_builtin: B.addAttribute(Attribute::Builtin); break;
@@ -1686,6 +1687,7 @@ bool LLParser::ParseOptionalParamAttrs(AttrBuilder &B) {
     case lltok::kw_zeroext:         B.addAttribute(Attribute::ZExt); break;
     case lltok::kw_immarg:          B.addAttribute(Attribute::ImmArg); break;
 
+    case lltok::kw_mesh:
     case lltok::kw_alignstack:
     case lltok::kw_alwaysinline:
     case lltok::kw_argmemonly:
@@ -1785,6 +1787,7 @@ bool LLParser::ParseOptionalReturnAttrs(AttrBuilder &B) {
       HaveError |= Error(Lex.getLoc(), "invalid use of parameter-only attribute");
       break;
 
+    case lltok::kw_mesh:
     case lltok::kw_alignstack:
     case lltok::kw_alwaysinline:
     case lltok::kw_argmemonly:

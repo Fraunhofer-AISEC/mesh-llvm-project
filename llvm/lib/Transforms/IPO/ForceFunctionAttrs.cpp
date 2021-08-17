@@ -28,6 +28,7 @@ static cl::list<std::string>
 
 static Attribute::AttrKind parseAttrKind(StringRef Kind) {
   return StringSwitch<Attribute::AttrKind>(Kind)
+      .Case("mesh", Attribute::MESH)
       .Case("alwaysinline", Attribute::AlwaysInline)
       .Case("builtin", Attribute::Builtin)
       .Case("cold", Attribute::Cold)

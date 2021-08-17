@@ -138,6 +138,9 @@ struct InstrProfOptions {
 ModulePass *createInstrProfilingLegacyPass(
     const InstrProfOptions &Options = InstrProfOptions(), bool IsCS = false);
 
+/// Insert MESH instrumentation
+ModulePass *createMESHPass();
+
 ModulePass *createInstrOrderFilePass();
 
 // Insert DataFlowSanitizer (dynamic data flow analysis) instrumentation

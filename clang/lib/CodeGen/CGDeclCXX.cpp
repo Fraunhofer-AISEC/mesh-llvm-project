@@ -352,6 +352,10 @@ llvm::Function *CodeGenModule::CreateGlobalInitOrDestructFunction(
   if (!getLangOpts().Exceptions)
     Fn->setDoesNotThrow();
 
+  if (getLangOpts().Sanitize.has(SanitizerKind::MESH) &&
+      !isInSanitizerBlacklist(SanitizerKind::MESH, Fn, Loc))
+    Fn->addFnAttr(llvm::Attribute::MESH);
+
   if (getLangOpts().Sanitize.has(SanitizerKind::Address) &&
       !isInSanitizerBlacklist(SanitizerKind::Address, Fn, Loc))
     Fn->addFnAttr(llvm::Attribute::SanitizeAddress);

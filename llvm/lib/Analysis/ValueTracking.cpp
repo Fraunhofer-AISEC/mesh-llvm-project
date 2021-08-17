@@ -4306,6 +4306,7 @@ bool llvm::mustSuppressSpeculation(const LoadInst &LI) {
   // Speculative load may create a race that did not exist in the source.
   return F.hasFnAttribute(Attribute::SanitizeThread) ||
     // Speculative load may load data from dirty regions.
+    F.hasFnAttribute(Attribute::MESH) ||
     F.hasFnAttribute(Attribute::SanitizeAddress) ||
     F.hasFnAttribute(Attribute::SanitizeHWAddress);
 }

@@ -597,6 +597,8 @@ static void writeStringRecord(BitstreamWriter &Stream, unsigned Code,
 
 static uint64_t getAttrKindEncoding(Attribute::AttrKind Kind) {
   switch (Kind) {
+  case Attribute::MESH:
+    return bitc::ATTR_KIND_MESH;
   case Attribute::Alignment:
     return bitc::ATTR_KIND_ALIGNMENT;
   case Attribute::AllocSize:

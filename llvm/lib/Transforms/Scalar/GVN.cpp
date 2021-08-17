@@ -1332,6 +1332,8 @@ static void reportLoadElim(LoadInst *LI, Value *AvailableValue,
 bool GVN::processNonLocalLoad(LoadInst *LI) {
   // non-local speculations are not allowed under asan.
   if (LI->getParent()->getParent()->hasFnAttribute(
+          Attribute::MESH) ||
+      LI->getParent()->getParent()->hasFnAttribute(
           Attribute::SanitizeAddress) ||
       LI->getParent()->getParent()->hasFnAttribute(
           Attribute::SanitizeHWAddress))

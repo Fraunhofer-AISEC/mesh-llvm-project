@@ -173,6 +173,7 @@ enum Kind {
   kw_tailcc,
 
   // Attributes:
+  kw_mesh,
   kw_attributes,
   kw_allocsize,
   kw_alwaysinline,

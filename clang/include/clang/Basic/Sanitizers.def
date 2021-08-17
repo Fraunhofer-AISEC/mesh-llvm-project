@@ -37,6 +37,9 @@
 #endif
 
 
+// MESH
+SANITIZER("mesh", MESH)
+
 // AddressSanitizer
 SANITIZER("address", Address)
 
